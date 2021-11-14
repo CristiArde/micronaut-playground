@@ -3,10 +3,21 @@ micronaut:
     name: petOwner
 datasources:
   default:
-    url: jdbc:postgresql://localhost:5432/postgres
-    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/petclinic
     username: postgres
-    password: ''
+    password: postgres
     schema-generate: CREATE_DROP
     dialect: POSTGRES
-jpa.default.properties.hibernate.hbm2ddl.auto: update
+    schema: petowner
+
+jpa:
+  default:
+    entity-scan:
+      packages:
+        - com.bonobo.micronaut.domain
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        enable_lazy_load_no_trans: true
+        show_sql: true
+        default-schema: petowner

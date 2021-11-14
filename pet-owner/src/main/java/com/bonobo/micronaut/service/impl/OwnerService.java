@@ -6,12 +6,15 @@ import com.bonobo.micronaut.service.IOwnerService;
 import io.micronaut.data.model.Page;
 import io.micronaut.data.model.Pageable;
 import io.micronaut.transaction.annotation.ReadOnly;
+import jakarta.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
 
+@Singleton
+@Transactional
 public class OwnerService implements IOwnerService {
 
     private final Logger log = LoggerFactory.getLogger(OwnerService.class);
