@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "types", schema = "petowner")
-public class Type implements Serializable {
+public class PetType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

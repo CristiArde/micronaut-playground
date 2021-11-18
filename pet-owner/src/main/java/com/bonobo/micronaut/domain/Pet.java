@@ -22,7 +22,7 @@ public class Pet implements Serializable {
     private Owner owner;
     @ManyToOne
     @JoinColumn (name = "type_id")
-    private Type type;
+    private PetType type;
 
     @OneToMany(mappedBy = "pet", orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<Visit> visits = new HashSet<>();
@@ -59,11 +59,11 @@ public class Pet implements Serializable {
         this.owner = owner;
     }
 
-    public Type getType() {
+    public PetType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(PetType type) {
         this.type = type;
     }
 
