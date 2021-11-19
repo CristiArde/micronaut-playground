@@ -6,8 +6,8 @@ import io.micronaut.data.annotation.Repository;
 import javax.persistence.EntityManager;
 
 @Repository
-public abstract class TypeRepository extends BaseRepository<PetType> {
-    protected TypeRepository(EntityManager entityManager) {
+public abstract class PetTypeRepository extends BaseRepository<PetType> {
+    protected PetTypeRepository(EntityManager entityManager) {
         super(entityManager);
     }
 }

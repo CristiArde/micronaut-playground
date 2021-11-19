@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 @Singleton
 @Transactional
 public class OwnerService extends BaseService<OwnerRepository, Owner>  {
+
     public OwnerService(OwnerRepository repository) {
         super(OwnerService.class.getName(), repository);
     }
