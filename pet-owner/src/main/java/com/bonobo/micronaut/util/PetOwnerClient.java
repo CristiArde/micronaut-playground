@@ -35,9 +35,7 @@ public class PetOwnerClient {
 
         if (CollectionUtils.isNotEmpty(pOwners.getContent())) {
             List<Owner> owners = pOwners.getContent();
-            owners.forEach(owner -> {
-                log.info("Owner: {}, {}", owner.getFirstName(), owner.getLastName());
-            });
+            owners.forEach(owner -> log.info("Owner: {}, {}", owner.getFirstName(), owner.getLastName()));
         }
     }
 
