@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Introspected
-public class Speciality implements Serializable {
+public class Specialty implements Serializable {
 
     @NotNull
     private Long id;

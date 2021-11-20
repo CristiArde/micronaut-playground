@@ -11,7 +11,7 @@ public class Doctor implements Serializable {
     private Long id;
     private String firsName;
     private String lastName;
-    private final Set<Speciality> specialities = new HashSet<>();
+    private final Set<Specialty> specialties = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -37,12 +37,12 @@ public class Doctor implements Serializable {
         this.lastName = lastName;
     }
 
-    public Set<Speciality> getSpecialities() {
-        return specialities;
+    public Set<Specialty> getSpecialties() {
+        return specialties;
     }
 
-    public void addSpeciality(Speciality speciality) {
-        this.specialities.add(speciality);
+    public void addSpecialty(Specialty speciality) {
+        this.specialties.add(speciality);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Doctor implements Serializable {
                 "id=" + id +
                 ", firsName='" + firsName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", specialities=" + specialities +
+                ", specialities=" + specialties +
                 '}';
     }
 }
