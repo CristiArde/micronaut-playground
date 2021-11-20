@@ -11,6 +11,12 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import javax.sql.DataSource;
 
+/**
+ * To execute various SQL statements, MyBatis would need a SqlSessionFactory
+ * object at runtime.
+ * Using standard properties in application.yml, Micronaut will define a Hikari-based
+ * data source, which will be injected to define SqlSessionFactory.
+ */
 @Factory
 public class MyBatisFactory {
 
