@@ -30,7 +30,7 @@ public interface ISpecialtyRepository {
                             "RETURNING id"
             }
     )
-    @Options(flushCache = true)
+    @Options(flushCache = Options.FlushCachePolicy.TRUE)
     Long save(Specialty specialty) throws Exception;
 
     @Delete("DELETE FROM petclinic.specialties WHERE id = #{id}")
