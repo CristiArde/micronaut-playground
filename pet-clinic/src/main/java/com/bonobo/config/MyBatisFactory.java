@@ -31,8 +31,7 @@ public class MyBatisFactory {
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
         Environment environment = new Environment("petclinic", transactionFactory, dataSource);
         Configuration configuration = new Configuration(environment);
-        //TODO add mappers
-        //configuration.addMapper();
+        configuration.addMappers("com.bonobo.repository");
         return new SqlSessionFactoryBuilder().build(configuration);
     }
 }

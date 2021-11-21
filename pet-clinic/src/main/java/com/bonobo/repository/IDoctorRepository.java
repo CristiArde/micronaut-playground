@@ -36,7 +36,7 @@ public interface IDoctorRepository {
                             "RETURNING id"
             }
     )
-    @Options(flushCache = true)
+    @Options(flushCache = Options.FlushCachePolicy.TRUE)
     Long save(Doctor vet) throws Exception;
 
     @Select(
