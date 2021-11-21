@@ -31,7 +31,7 @@ dependencies {
     testImplementation("org.testcontainers:postgresql")
     testImplementation("org.testcontainers:testcontainers")
     implementation("io.micronaut:micronaut-validation")
-    implementation ("org.apache.ibatis:ibatis-core:3.0")
+    implementation ("org.mybatis:mybatis:3.5.7")
 
 }
 
