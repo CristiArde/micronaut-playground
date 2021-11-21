@@ -38,7 +38,7 @@ public interface SpecialtyRepository {
 
     @Select({
             "SELECT DISTINCT id, name FROM petclinic.specialties WHERE id IN(",
-            "SELECT specialty_id FROM petclinic.vet_specialties WHERE vet_id = #{vetId}",
+            "SELECT specialty_id FROM petclinic.doc_specialties WHERE vet_id = #{vetId}",
             ")"
     })
     Set<Specialty> findByVetId(@Param("vetId") Long vetId) throws Exception;

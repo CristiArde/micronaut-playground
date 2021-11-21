@@ -9,7 +9,7 @@ public class Doctor implements Serializable {
 
     @NotNull
     private Long id;
-    private String firsName;
+    private String firstName;
     private String lastName;
     private final Set<Specialty> specialties = new HashSet<>();
 
@@ -21,12 +21,12 @@ public class Doctor implements Serializable {
         this.id = id;
     }
 
-    public String getFirsName() {
-        return firsName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirsName(String firsName) {
-        this.firsName = firsName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -53,7 +53,7 @@ public class Doctor implements Serializable {
     public String toString() {
         return "Doctor{" +
                 "id=" + id +
-                ", firsName='" + firsName + '\'' +
+                ", firsName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", specialities=" + specialties +
                 '}';
