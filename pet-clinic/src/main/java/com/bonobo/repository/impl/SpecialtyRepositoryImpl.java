@@ -1,7 +1,7 @@
 package com.bonobo.repository.impl;
 
 import com.bonobo.domain.Specialty;
-import com.bonobo.repository.ISpecialtyRepository;
+import com.bonobo.repository.SpecialtyRepository;
 import jakarta.inject.Singleton;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,15 +10,15 @@ import java.util.Collection;
 import java.util.Set;
 
 @Singleton
-public class SpecialtyRepositoryImpl implements ISpecialtyRepository {
+public class SpecialtyRepositoryImpl implements SpecialtyRepository {
     private final SqlSessionFactory sqlSessionFactory;
 
     public SpecialtyRepositoryImpl(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
-    private ISpecialtyRepository getSpecialtyRepository(SqlSession sqlSession) {
-        return sqlSession.getMapper(ISpecialtyRepository.class);
+    private SpecialtyRepository getSpecialtyRepository(SqlSession sqlSession) {
+        return sqlSession.getMapper(SpecialtyRepository.class);
     }
 
     @Override

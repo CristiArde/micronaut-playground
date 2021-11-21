@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.Collection;
 import java.util.Set;
 
-public interface ISpecialtyRepository {
+public interface SpecialtyRepository {
 
     @Select("SELECT * FROM petclinic.specialties")
     Collection<Specialty> findAll() throws Exception;

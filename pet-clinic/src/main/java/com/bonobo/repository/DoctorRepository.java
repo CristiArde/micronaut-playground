@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.Collection;
 
-public interface IDoctorRepository {
+public interface DoctorRepository {
     @Select("SELECT * FROM petclinic.doctors")
     @Results({
             @Result(property = "id", column = "id"),

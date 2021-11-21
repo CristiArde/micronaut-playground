@@ -2,6 +2,7 @@ package com.bonobo.util;
 
 import com.bonobo.domain.Doctor;
 import com.bonobo.domain.Specialty;
+import com.bonobo.repository.impl.SpecialtyRepositoryImpl;
 import com.bonobo.service.ISpecialtyService;
 import io.micronaut.core.util.CollectionUtils;
 import jakarta.inject.Singleton;
