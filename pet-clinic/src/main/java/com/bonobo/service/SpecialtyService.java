@@ -5,7 +5,7 @@ import com.bonobo.domain.Specialty;
 import java.util.Collection;
 import java.util.Optional;
 
-public interface ISpecialtyService {
+public interface SpecialtyService {
     Specialty save(Specialty specialty) throws Exception;
 
     Collection<Specialty> findAll() throws Exception;

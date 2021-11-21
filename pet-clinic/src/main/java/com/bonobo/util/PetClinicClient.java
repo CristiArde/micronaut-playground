@@ -1,9 +1,7 @@
 package com.bonobo.util;
 
-import com.bonobo.domain.Doctor;
 import com.bonobo.domain.Specialty;
-import com.bonobo.repository.impl.SpecialtyRepositoryImpl;
-import com.bonobo.service.ISpecialtyService;
+import com.bonobo.service.SpecialtyService;
 import io.micronaut.core.util.CollectionUtils;
 import jakarta.inject.Singleton;
 import org.slf4j.Logger;
@@ -13,11 +11,11 @@ import java.util.Collection;
 
 @Singleton
 public class PetClinicClient {
-    private final ISpecialtyService specialtyService;
+    private final SpecialtyService specialtyService;
     private final Logger log = LoggerFactory.getLogger(PetClinicClient.class);
 
 
-    public PetClinicClient(ISpecialtyService specialtyService) {
+    public PetClinicClient(SpecialtyService specialtyService) {
         this.specialtyService = specialtyService;
     }
 

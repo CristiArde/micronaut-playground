@@ -41,6 +41,10 @@ public class Doctor implements Serializable {
         return specialties;
     }
 
+    public void setSpecialties(Set<Specialty> specialties){
+        this.specialties.addAll(specialties);
+    }
+
     public void addSpecialty(Specialty speciality) {
         this.specialties.add(speciality);
     }

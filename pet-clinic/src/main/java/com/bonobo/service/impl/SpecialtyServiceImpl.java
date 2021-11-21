@@ -2,7 +2,7 @@ package com.bonobo.service.impl;
 
 import com.bonobo.domain.Specialty;
 import com.bonobo.repository.SpecialtyRepository;
-import com.bonobo.service.ISpecialtyService;
+import com.bonobo.service.SpecialtyService;
 import jakarta.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Singleton
-public class SpecialtyServiceImpl implements ISpecialtyService {
+public class SpecialtyServiceImpl implements SpecialtyService {
 
     private final Logger log = LoggerFactory.getLogger(SpecialtyServiceImpl.class);
     private final SpecialtyRepository specialtyRepository;
