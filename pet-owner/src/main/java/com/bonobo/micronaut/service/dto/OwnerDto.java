@@ -1,33 +1,21 @@
-package com.bonobo.micronaut.domain;
+package com.bonobo.micronaut.service.dto;
 
+import io.micronaut.core.annotation.Introspected;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "owners", schema = "petowner")
-public class Owner implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Introspected
+public class OwnerDto implements Serializable {
     private Long id;
-
-    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "last_name")
     private String lastName;
-    @Column(name = "address")
     private String address;
-    @Column(name = "city")
     private String city;
-    @Column(name = "telephone")
     private String telephone;
-
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private Set<Pet> pets = new HashSet<>();
-
+    private Set<PetDto> pets = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -77,36 +65,23 @@ public class Owner implements Serializable {
         this.telephone = telephone;
     }
 
-    public Set<Pet> getPets() {
+    public Set<PetDto> getPets() {
         return pets;
     }
 
-    public void setPets(Set<Pet> pets) {
+    public void setPets(Set<PetDto> pets) {
         this.pets = pets;
     }
 
-    public Owner addPet(Pet pet) {
-        this.pets.add(pet);
-        pet.setOwner(this);
-        return this;
-    }
-
-    public Owner removePet(Pet pet) {
-        this.pets.remove(pet);
-        pet.setOwner(null);
-        return this;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OwnerDto ownerDto)) return false;
+        return Objects.equals(id, ownerDto.id);
     }
 
     @Override
-    public String toString() {
-        return "Owner{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", pets=" + pets +
-                '}';
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
