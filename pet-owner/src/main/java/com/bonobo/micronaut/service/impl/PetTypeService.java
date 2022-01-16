@@ -2,15 +2,17 @@ package com.bonobo.micronaut.service.impl;
 
 import com.bonobo.micronaut.domain.PetType;
 import com.bonobo.micronaut.repository.PetTypeRepository;
+import com.bonobo.micronaut.service.dto.PetTypeDto;
+import com.bonobo.micronaut.service.mapper.PetTypeMapper;
 import jakarta.inject.Singleton;
 
 import javax.transaction.Transactional;
 
 @Singleton
 @Transactional
-public class PetTypeService extends BaseService<PetTypeRepository, PetType> {
+public class PetTypeService extends BaseService<PetType, PetTypeDto, PetTypeMapper, PetTypeRepository> {
 
     public PetTypeService(PetTypeRepository repository) {
-        super(PetTypeService.class.getName(), repository);
+        super(PetTypeService.class.getName(), repository, mapper);
     }
 }

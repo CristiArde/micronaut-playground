@@ -6,12 +6,12 @@ import io.micronaut.data.model.Pageable;
 import java.io.Serializable;
 import java.util.Optional;
 
-public interface IBaseService<E extends Serializable> {
-    E save(E entity);
+public interface IBaseService<D extends Serializable> {
+    D save(D dto);
 
-    Page<E> findAll(Pageable pageable);
+    Page<D> findAll(Pageable pageable);
 
-    Optional<E> findOne(Long id);
+    Optional<D> findOne(Long id);
 
     void delete(Long id);
 }
