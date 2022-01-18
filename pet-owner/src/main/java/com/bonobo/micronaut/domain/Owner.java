@@ -85,17 +85,17 @@ public class Owner implements Serializable {
         this.pets = pets;
     }
 
-    public Owner addPet(Pet pet) {
-        this.pets.add(pet);
-        pet.setOwner(this);
-        return this;
-    }
-
-    public Owner removePet(Pet pet) {
-        this.pets.remove(pet);
-        pet.setOwner(null);
-        return this;
-    }
+//    public Owner addPet(Pet pet) {
+//        this.pets.add(pet);
+//        pet.setOwner(this);
+//        return this;
+//    }
+//
+//    public Owner removePet(Pet pet) {
+//        this.pets.remove(pet);
+//        pet.setOwner(null);
+//        return this;
+//    }
 
     @Override
     public String toString() {

@@ -81,11 +81,11 @@ public class Pet implements Serializable {
         return this;
     }
 
-//    public Pet removeVisit(Visit visit) {
-//        this.visits.remove(visit);
-//        visit.setPet(null);
-//        return this;
-//    }
+    public Pet removeVisit(Visit visit) {
+        this.visits.remove(visit);
+        visit.setPet(null);
+        return this;
+    }
 
     @Override
     public String toString() {
