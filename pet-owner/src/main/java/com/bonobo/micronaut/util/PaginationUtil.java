@@ -10,6 +10,8 @@ public class PaginationUtil {
     private static final String TOTAL_PAGE_COUNT = "PAGE_COUNT";
     private static final String LINK_FORMAT = "<{0}>; rel=\"{1}\"";
 
+    private PaginationUtil() {}
+
     public static <T> void generatePaginationHttpHeaders(MutableHttpHeaders headers, UriBuilder uriBuilder, Page<T> page) {
         long totalPageSize = page.getTotalSize();
         int pageNumber = page.getPageNumber();
