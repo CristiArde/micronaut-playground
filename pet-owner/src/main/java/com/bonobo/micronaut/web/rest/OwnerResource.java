@@ -9,6 +9,7 @@ import io.micronaut.data.model.Page;
 import io.micronaut.data.model.Pageable;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.uri.UriBuilder;
 import io.micronaut.scheduling.TaskExecutors;
@@ -20,9 +21,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller("/api")
-public class OwnerResource extends BaseResource<OwnerService>{
+public class OwnerResource extends BaseResource<OwnerService> {
 
     private static final String ENTITY_NAME = "Owner";
+
     public OwnerResource(OwnerService service) {
         super(OwnerResource.class, service);
     }
@@ -64,4 +66,29 @@ public class OwnerResource extends BaseResource<OwnerService>{
             HeaderUtil.createEntityCreationAlert(headers, applicationName, true, ENTITY_NAME, result.getId().toString());
         });
     }
+
+    @Put("/owners")
+    @ExecuteOn(TaskExecutors.IO)
+    public HttpResponse<OwnerDto> updateOwner(@Body OwnerDto ownerDto) throws URISyntaxException {
+        log.debug("REST request to update Owner : {}", ownerDto);
+        if (ownerDto.getId() == null) {
+            throw new BadRequestException("Invalid id", ENTITY_NAME, "id_null");
+        }
+        OwnerDto result = service.save(ownerDto);
+        return HttpResponse.ok(result).headers(headers -> {
+            HeaderUtil.createEntityUpdateAlert(headers, applicationName, true,
+                    ENTITY_NAME, ownerDto.getId().toString());
+        });
+    }
+
+    @Delete("/owners/{id}")
+    @ExecuteOn(TaskExecutors.IO)
+    public HttpResponse<Object> deleteOwner(@PathVariable Long id) {
+        log.debug("REST request to delete Owner : {}", id);
+        service.delete(id);
+        return HttpResponse.noContent().headers(headers ->
+                HeaderUtil.createEntityDeletionAlert(headers, applicationName,
+                        true, ENTITY_NAME, id.toString()));
+    }
+
 }

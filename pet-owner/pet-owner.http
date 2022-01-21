@@ -1,3 +1,54 @@
+DELETE http://{{host}}/api/owners/16
+
+> {%
+ client.test("Owner delete test", function (){
+    client.assert(response.status === 204, "Owner was deleted")
+     client.assert(response.headers.valueOf("X-petOwner-alert") === "petOwner.Owner.deleted", "HttpResponse.deleted")
+});
+%}
+
+###
+PUT http://{{host}}/api/owners
+Content-Type: application/json
+
+{
+  "firstName": "Cristi",
+  "lastName": "Arde",
+  "address": "My Address",
+  "city": "My City",
+  "telephone": "31453546757"
+}
+
+> {%
+ client.test("Owner update test", function (){
+    client.assert(response.status === 400, "Owner id must not be null")
+    client.assert(response.body["id"] == null, "ID is null")
+});
+
+ %}
+
+###
+PUT http://{{host}}/api/owners
+Content-Type: application/json
+
+{
+  "id": 1,
+  "firstName": "Cristi",
+  "lastName": "Arde",
+  "address": "My Address",
+  "city": "My City",
+  "telephone": "31453546757"
+}
+
+> {%
+ client.test("Owner update test", function (){
+    client.assert(response.status === 200, "Owner updated")
+    client.assert(response.body["id"] != null, "ID is not null")
+});
+
+ %}
+
+###
 POST http://{{host}}/api/owners
 Content-Type: application/json
 
@@ -10,10 +61,31 @@ Content-Type: application/json
 }
 
 > {%
- client.test("ID not found", function (){
+ client.test("Owner creation test", function (){
     client.assert(response.status === 201, "Owner created")
     client.assert(response.headers.valueOf("X-petOwner-params") != null, "New ID was created")
     client.assert(response.headers.valueOf("X-petOwner-alert") === "petOwner.Owner.created", "HttpResponse.created")
+});
+
+ %}
+
+
+###
+POST http://{{host}}/api/owners/
+Content-Type: application/json
+
+{
+  "id": 999,
+  "firstName": "Cristi",
+  "lastName": "Arde",
+  "address": "My Address",
+  "city": "My City",
+  "telephone": "31453546757"
+}
+
+> {%
+ client.test("ID should not be set test", function (){
+    client.assert(response.status === 400)
 });
 
  %}
@@ -23,7 +95,7 @@ GET http://{{host}}/api/owners/9999999
 Accept: application/json
 
 > {%
- client.test("ID not found", function (){
+ client.test("ID not found test", function (){
     client.assert(response.status === 404, "Page not found")
     client.assert(response.body["id"] == null, "ID does not exits")
 });
