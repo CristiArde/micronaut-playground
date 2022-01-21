@@ -10,7 +10,7 @@ public abstract class BaseResource<S extends BaseService<?, ?, ?, ?>> {
     protected final S service;
 
     @Value("${micronaut.application.name}")
-    private String applicationName;
+    protected String applicationName;
 
     public BaseResource(Class<?> clazz, S service) {
         this.log = LoggerFactory.getLogger(clazz);

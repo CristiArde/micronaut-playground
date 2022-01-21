@@ -1,10 +1,31 @@
+POST http://{{host}}/api/owners
+Content-Type: application/json
+
+{
+  "firstName": "Cristi",
+  "lastName": "Arde",
+  "address": "My Address",
+  "city": "My City",
+  "telephone": "31453546757"
+}
+
+> {%
+ client.test("ID not found", function (){
+    client.assert(response.status === 201, "Owner created")
+    client.assert(response.headers.valueOf("X-petOwner-params") != null, "New ID was created")
+    client.assert(response.headers.valueOf("X-petOwner-alert") === "petOwner.Owner.created", "HttpResponse.created")
+});
+
+ %}
+
+###
 GET http://{{host}}/api/owners/9999999
 Accept: application/json
 
 > {%
  client.test("ID not found", function (){
     client.assert(response.status === 404, "Page not found")
-      client.assert(response.body["id"] == null, "ID does not exits")
+    client.assert(response.body["id"] == null, "ID does not exits")
 });
 
  %}
@@ -20,8 +41,6 @@ client.test("Fetch owner id 1", function (){
 });
  %}
 
-
-
 ###
 GET http://{{host}}/api/owners
 Accept: application/json
@@ -32,4 +51,7 @@ client.test("Owners is not empty", function (){
     client.assert(response.headers.valueOf("PAGE_COUNT") > 0, "Result is not empty")
 });
  %}
+
+
+
 
