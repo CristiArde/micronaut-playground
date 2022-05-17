@@ -1,6 +1,7 @@
 package com.bonobo.repository;
 
 import com.bonobo.domain.Specialty;
+import com.bonobo.service.dto.SpecialtyDto;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;

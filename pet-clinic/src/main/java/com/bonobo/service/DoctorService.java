@@ -1,17 +1,17 @@
 package com.bonobo.service;
 
-import com.bonobo.domain.Doctor;
+import com.bonobo.service.dto.DoctorDto;
 
 import java.util.Collection;
 import java.util.Optional;
 
 public interface DoctorService {
 
-    Doctor save(Doctor vet) throws Exception;
+    DoctorDto save(DoctorDto vet) throws Exception;
 
-    Collection<Doctor> findAll() throws Exception;
+    Collection<DoctorDto> findAll() throws Exception;
 
-    Optional<Doctor> findOne(Long id) throws Exception;
+    Optional<DoctorDto> findOne(Long id) throws Exception;
 
     void delete(Long id) throws Exception;
 

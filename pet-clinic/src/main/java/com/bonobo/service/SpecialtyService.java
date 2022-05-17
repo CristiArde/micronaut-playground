@@ -1,16 +1,17 @@
 package com.bonobo.service;
 
-import com.bonobo.domain.Specialty;
+
+import com.bonobo.service.dto.SpecialtyDto;
 
 import java.util.Collection;
 import java.util.Optional;
 
 public interface SpecialtyService {
-    Specialty save(Specialty specialty) throws Exception;
+    SpecialtyDto save(SpecialtyDto specialty) throws Exception;
 
-    Collection<Specialty> findAll() throws Exception;
+    Collection<SpecialtyDto> findAll() throws Exception;
 
-    Optional<Specialty> findOne(Long id) throws Exception;
+    Optional<SpecialtyDto> findOne(Long id) throws Exception;
 
     void delete(Long id) throws Exception;
 }
