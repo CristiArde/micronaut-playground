@@ -32,6 +32,7 @@ dependencies {
     implementation("javax.inject:javax.inject:1")
     implementation("io.micronaut.problem:micronaut-problem-json")
     implementation group: 'io.micronaut', name: 'micronaut-security', version: '1.0.0'
+    implementation group: 'io.reactivex.rxjava3', name: 'rxjava', version: '3.1.4'
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.testcontainers:junit-jupiter")
