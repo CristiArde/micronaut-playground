@@ -1,6 +1,27 @@
 micronaut:
   application:
     name: petOwner
+  security:
+    enabled: true
+    authentication: session
+    session:
+      enabled: true
+    endpoints:
+      login:
+        enabled: true
+      logout:
+        enabled: true
+
+identity-store:
+  users:
+    alice: alice@1
+    bob: bob@2
+    charlie: charlie@3
+  roles:
+    alice: ADMIN
+    bob: VIEW
+    charlie: VIEW
+
 datasources:
   default:
     url: jdbc:postgresql://localhost:5432/petclinic
