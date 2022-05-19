@@ -13,6 +13,8 @@ import io.micronaut.http.annotation.*;
 import io.micronaut.http.uri.UriBuilder;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -20,6 +22,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller("/api")
+//To give access to the
+//whole controller or limit it to a specific endpoint, we can simply use the @Secured
+//annotation.
+//SecurityRule.IS_ANONYMOUS  means you dont need to be autheticated to use the endpoints
+//@Secured(SecurityRule.IS_AUTHENTICATED)
 public class OwnerResource extends BaseResource<OwnerService> {
 
     private static final String ENTITY_NAME = "Owner";
