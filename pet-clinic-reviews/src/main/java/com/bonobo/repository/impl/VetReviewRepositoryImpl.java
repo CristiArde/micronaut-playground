@@ -5,6 +5,7 @@ import com.bonobo.domain.VetReview;
 import com.bonobo.repository.VetReviewRepository;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
+import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import static com.mongodb.client.model.Filters.eq;
 
 @Singleton
 public class VetReviewRepositoryImpl implements VetReviewRepository {
+    @Inject
     private final MongoClient mongoClient;
     private final MongoConfiguration mongoConfiguration;
 
@@ -46,7 +48,8 @@ public class VetReviewRepositoryImpl implements VetReviewRepository {
     }
 
     private MongoCollection<VetReview> getCollection() {
-        return mongoClient.getDatabase(mongoConfiguration.getDatabaseName())
+        return mongoClient
+                .getDatabase(mongoConfiguration.getDatabaseName())
                 .getCollection(mongoConfiguration.getCollectionName(), VetReview.class);
     }
 }

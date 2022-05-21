@@ -1,25 +1,45 @@
 package com.bonobo;
 
-import com.bonobo.util.PetClinicClient;
-import io.micronaut.context.event.StartupEvent;
+import io.micronaut.context.ApplicationContext;
+import io.micronaut.runtime.ApplicationConfiguration;
 import io.micronaut.runtime.Micronaut;
-import io.micronaut.runtime.event.annotation.EventListener;
-import jakarta.inject.Singleton;
+import io.micronaut.runtime.server.EmbeddedServer;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Singleton;
+
 
 @Singleton
 public class Application {
-    private final PetClinicClient petClinicClient;
 
-    public Application(PetClinicClient petClinicClient) {
-        this.petClinicClient = petClinicClient;
-    }
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
-        Micronaut.run(Application.class, args);
+        ApplicationContext applicationContext = Micronaut.run(Application.class, args);
+        logApplicationStartup(applicationContext);
     }
 
-    @EventListener
-    void init(StartupEvent event) {
-        this.petClinicClient.performDatabaseOperations();
+    private static void logApplicationStartup(ApplicationContext context) {
+        EmbeddedServer server = context.getBean(EmbeddedServer.class);
+        ApplicationConfiguration application = context.getBean(ApplicationConfiguration.class);
+        String protocol = server.getScheme();
+        int serverPort = server.getPort();
+        String hostAddress = server.getHost();
+
+        log.info(
+                "\n----------------------------------------------------------\n\t" +
+                        "Application '{}' is running! Access URLs:\n\t" +
+                        "Local: \t\t\t{}://localhost:{}\n\t" +
+                        "External: \t\t{}://{}:{}" +
+                        "\n----------------------------------------------------------",
+                application.getName().orElse(null),
+                protocol,
+                serverPort,
+                protocol,
+                hostAddress,
+                serverPort
+        );
     }
 }

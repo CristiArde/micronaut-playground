@@ -4,7 +4,7 @@ import com.bonobo.domain.VetReview;
 import com.bonobo.service.impl.VetReviewService;
 import com.mongodb.client.MongoClient;
 import io.micronaut.context.annotation.Requires;
-import jakarta.inject.Singleton;
+import javax.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +23,7 @@ public class PetClinicClient {
         this.vetReviewService = vetReviewService;
     }
 
-    public void performDatabaseOperations() {
+   /* public void performDatabaseOperations() {
         performFindAll();
         VetReview vetReview = performSave();
         performFindByReviewId(vetReview.getReviewId());
@@ -68,5 +68,5 @@ public class PetClinicClient {
         log.info("Request to performDelete for vet review: {}", vetReview);
         log.info("-------------------------------------------------------");
         vetReviewService.delete(vetReview.getReviewId());
-    }
+    }*/
 }

@@ -16,6 +16,8 @@ public class VetReview {
     private LocalDate dateAdded;
 
 
+    public VetReview(){}
+
     @BsonCreator
     @JsonCreator
     public VetReview(@JsonProperty("reviewId")
