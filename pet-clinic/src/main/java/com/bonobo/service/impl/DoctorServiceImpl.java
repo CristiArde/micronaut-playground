@@ -113,4 +113,20 @@ public class DoctorServiceImpl implements DoctorService {
             }
         }, () -> log.debug("The doctorVet ID:{} does not exists", id));
     }
+
+    @Override
+    public void updateVetAverageRating(Long id, Double rating) throws Exception {
+        log.debug("Request to update vet rating, id: {}, rating: {}", id, rating);
+        Optional<DoctorDto> oVetDTO = findOne(id);
+        if (oVetDTO.isPresent()) {
+            DoctorDto vetDTO = oVetDTO.get();
+
+            Double averageRating = vetDTO.getAverageRating() != null ? vetDTO.getAverageRating() : 0D;
+            Long ratingCount = vetDTO.getRatingCount() != null ? vetDTO.getRatingCount() : 0L;
+            Double newAvgRating = ((averageRating * ratingCount) + rating) / (ratingCount + 1);
+            Long newRatingCount = ratingCount + 1;
+
+            doctorRepository.updateVetAverageRating(id, newAvgRating, newRatingCount);
+        }
+    }
 }

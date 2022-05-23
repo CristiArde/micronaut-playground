@@ -36,6 +36,7 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
     implementation 'org.zalando:problem:0.27.1'
+    implementation("io.micronaut.kafka:micronaut-kafka")
 
 }
 

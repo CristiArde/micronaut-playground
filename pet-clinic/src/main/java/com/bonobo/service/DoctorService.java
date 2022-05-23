@@ -15,4 +15,11 @@ public interface DoctorService {
 
     void delete(Long id) throws Exception;
 
+    /**
+     * Update average rating for a vet
+     *
+     * @param id
+     * @param rating
+     */
+    void updateVetAverageRating(Long id, Double rating) throws Exception;
 }
