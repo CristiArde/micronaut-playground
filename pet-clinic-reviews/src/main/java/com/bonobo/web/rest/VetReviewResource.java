@@ -1,5 +1,6 @@
 package com.bonobo.web.rest;
 
+import com.bonobo.integration.client.VetReviewClient;
 import com.bonobo.service.dto.VetReviewDto;
 import com.bonobo.service.impl.VetReviewService;
 import com.bonobo.util.HeaderUtil;
@@ -17,6 +18,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller("/api")
 public class VetReviewResource {
@@ -30,8 +32,11 @@ public class VetReviewResource {
 
     private final VetReviewService vetReviewService;
 
-    public VetReviewResource(VetReviewService vetReviewService) {
+    private final VetReviewClient vetReviewClient;
+
+    public VetReviewResource(VetReviewService vetReviewService, VetReviewClient vetReviewClient) {
         this.vetReviewService = vetReviewService;
+        this.vetReviewClient = vetReviewClient;
     }
 
     /**
@@ -48,7 +53,11 @@ public class VetReviewResource {
         if (vetReviewDTO.getReviewId() != null) {
             throw new BadRequestAlertException("A new vetReview cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        vetReviewDTO.setReviewId(UUID.randomUUID().toString());
         VetReviewDto result = vetReviewService.save(vetReviewDTO);
+
+        vetReviewClient.send(result);
+
         URI location = new URI("/api/vet-reviews/" + result.getReviewId());
         return HttpResponse.created(result).headers(headers -> {
             headers.location(location);
